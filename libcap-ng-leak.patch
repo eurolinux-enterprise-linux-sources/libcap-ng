@@ -1,0 +1,12 @@
+Index: src/cap-ng.c
+===================================================================
+--- src/cap-ng.c	(revision 56)
++++ src/cap-ng.c	(working copy)
+@@ -197,6 +197,7 @@
+ 				if (errno == 0)
+ 					last_cap = val;
+ 			}
++			close(fd);
+ 		}
+ 		if (last_cap == -1)
+ 			last_cap = CAP_LAST_CAP;

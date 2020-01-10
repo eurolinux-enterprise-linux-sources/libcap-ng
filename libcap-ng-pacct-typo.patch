@@ -1,0 +1,11 @@
+Index: /trunk/src/captab.h
+===================================================================
+--- /trunk/src/captab.h	(revision 81)
++++ /trunk/src/captab.h	(revision 82)
+@@ -41,5 +41,5 @@
+ _S(CAP_SYS_CHROOT,		"sys_chroot"		)
+ _S(CAP_SYS_PTRACE,		"sys_ptrace"		)
+-_S(CAP_SYS_PACCT,		"sys_psacct"		)
++_S(CAP_SYS_PACCT,		"sys_pacct"		)
+ _S(CAP_SYS_ADMIN,		"sys_admin"		)
+ _S(CAP_SYS_BOOT,		"sys_boot"		)

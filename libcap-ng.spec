@@ -2,13 +2,16 @@
 
 Summary: An alternate posix capabilities library
 Name: libcap-ng
-Version: 0.7.3
-Release: 5%{?dist}
+Version: 0.7.5
+Release: 4%{?dist}
 License: LGPLv2+
 Group: System Environment/Libraries
 URL: http://people.redhat.com/sgrubb/libcap-ng
 Source0: http://people.redhat.com/sgrubb/libcap-ng/%{name}-%{version}.tar.gz
-Patch1: libcap-ng-0.7.4-badfd.patch
+Patch1: libcap-ng-test-fixup.patch
+Patch2: libcap-ng-leak.patch
+Patch3: libcap-ng-thread-test.patch
+Patch4: libcap-ng-pacct-typo.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: kernel-headers >= 2.6.11 
 
@@ -51,7 +54,10 @@ lets you set the file system based capabilities.
 
 %prep
 %setup -q
-%patch1 -p1
+%patch1 -p0
+%patch2 -p0
+%patch3 -p2
+%patch4 -p2
 
 %build
 %configure --libdir=/%{_lib}
@@ -113,6 +119,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(0644,root,root) %{_mandir}/man8/*
 
 %changelog
+* Fri Aug 14 2015 Steve Grubb <sgrubb@redhat.com> 0.7.5-4
+- resolves: #1253220 - captest list sys_psacct instead of sys_pacct
+
+* Tue Aug 11 2015 Steve Grubb <sgrubb@redhat.com> 0.7.5-3
+- resolves: #1185610 - libcap-ng: update caps table for newer kernels
+- Fix thread test
+
+* Wed May 13 2015 Steve Grubb <sgrubb@redhat.com> 0.7.5-2
+- resolves: #1185610 - libcap-ng: update caps table for newer kernels
+- Fix a leaked FD in upstream code
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 0.7.3-5
 - Mass rebuild 2014-01-24
 
